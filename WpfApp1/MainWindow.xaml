@@ -1,0 +1,103 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="CRUD Clientes - ADO.NET" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Título -->
+        <TextBlock Grid.Row="0" Text="Gestión de Clientes" FontSize="20" FontWeight="Bold" 
+                   HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <!-- Formulario de datos -->
+        <GroupBox Grid.Row="1" Header="Datos del Cliente" Margin="0,0,0,10">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Fila 1 -->
+                <Label Grid.Row="0" Grid.Column="0" Content="ID Cliente:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="txtIdCliente" MaxLength="5" Margin="5" 
+                         IsReadOnly="True" Background="LightGray" ToolTip="ID generado automáticamente"/>
+                <Label Grid.Row="0" Grid.Column="3" Content="Nombre Compañía:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="0" Grid.Column="4" Name="txtNombreCompania" MaxLength="100" Margin="5"/>
+                
+                <!-- Fila 2 -->
+                <Label Grid.Row="1" Grid.Column="0" Content="Nombre Contacto:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="txtNombreContacto" MaxLength="100" Margin="5"/>
+                <Label Grid.Row="1" Grid.Column="3" Content="Cargo Contacto:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="1" Grid.Column="4" Name="txtCargoContacto" MaxLength="100" Margin="5"/>
+                
+                <!-- Fila 3 -->
+                <Label Grid.Row="2" Grid.Column="0" Content="Dirección:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="txtDireccion" MaxLength="100" Margin="5"/>
+                <Label Grid.Row="2" Grid.Column="3" Content="Ciudad:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="2" Grid.Column="4" Name="txtCiudad" MaxLength="100" Margin="5"/>
+                
+                <!-- Fila 4 -->
+                <Label Grid.Row="3" Grid.Column="0" Content="Región:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Name="txtRegion" MaxLength="100" Margin="5"/>
+                <Label Grid.Row="3" Grid.Column="3" Content="Código Postal:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="4" Name="txtCodPostal" MaxLength="100" Margin="5"/>
+                
+                <!-- Fila 5 -->
+                <Label Grid.Row="4" Grid.Column="0" Content="País:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Name="txtPais" MaxLength="100" Margin="5"/>
+                <Label Grid.Row="4" Grid.Column="3" Content="Teléfono:" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="4" Grid.Column="4" Name="txtTelefono" MaxLength="30" Margin="5"/>
+            </Grid>
+        </GroupBox>
+        
+        <!-- DataGrid para mostrar clientes -->
+        <GroupBox Grid.Row="2" Header="Lista de Clientes" Margin="0,0,0,10">
+            <DataGrid Name="dgClientes" AutoGenerateColumns="False" IsReadOnly="True" 
+                      SelectionMode="Single" SelectionChanged="DgClientes_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding IdCliente}" Width="50"/>
+                    <DataGridTextColumn Header="Compañía" Binding="{Binding NombreCompania}" Width="150"/>
+                    <DataGridTextColumn Header="Contacto" Binding="{Binding NombreContacto}" Width="120"/>
+                    <DataGridTextColumn Header="Ciudad" Binding="{Binding Ciudad}" Width="100"/>
+                    <DataGridTextColumn Header="País" Binding="{Binding Pais}" Width="100"/>
+                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        
+        <!-- Botones -->
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Center">
+            <Button Name="btnInsertar" Content="Insertar" Width="80" Height="30" Margin="5" 
+                    Click="BtnInsertar_Click"/>
+            <Button Name="btnActualizar" Content="Actualizar" Width="80" Height="30" Margin="5" 
+                    Click="BtnActualizar_Click"/>
+            <Button Name="btnEliminar" Content="Eliminar" Width="80" Height="30" Margin="5" 
+                    Click="BtnEliminar_Click"/>
+            <Button Name="btnLimpiar" Content="Limpiar" Width="80" Height="30" Margin="5" 
+                    Click="BtnLimpiar_Click"/>
+            <Button Name="btnCargar" Content="Cargar Todos" Width="80" Height="30" Margin="5" 
+                    Click="BtnCargar_Click"/>
+            <Button Name="btnDepurar" Content="🔍 Debug" Width="80" Height="30" Margin="5" 
+                    Click="BtnDepurar_Click" Background="Yellow"/>
+        </WrapPanel>
+    </Grid>
+</Window>
